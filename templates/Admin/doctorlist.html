@@ -1,0 +1,27 @@
+{% extends 'Admin/adminindex.html' %}
+{% load static %}
+
+{% block content %}
+
+   <div class="d-flex justify-content-between align-items-center mb-4">
+  <h3 class="mb-0">Doctors</h3>
+
+</div>
+<div class="container mt-4">
+    <div class="row">
+       {% for doctor in doctor %}
+        <div class="col-md-3 mb-4 d-flex">
+            <div class="card text-center flex-fill" style="border-radius: 50px; padding: 10px;">
+                <img src="{{ doctor.images.url }}" class="card-img-top" alt="{{ doctor.Doc_name }}" style="border-radius: 20px; width: 80px; height: 80px; margin: auto;"> <!-- Smaller image -->
+                <div class="card-body" style="padding: 10px;">
+                    <h5 class="card-title" style="font-size: 1.1rem;">{{ doctor.Doc_name }}</h5>
+                <p class="card-text" style="font-size: 0.9rem;">{{ doctor.Doc_department }}</p>
+                </div><div ><a href="{% url 'update_doctor' doctor.id %}" class="btn btn-warning btn-sm">Update</a>
+                    <a href="{% url 'delete_doctor' doctor.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this doctor?');">Delete</a> <!-- Small button -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

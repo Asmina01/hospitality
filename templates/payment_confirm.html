@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Confirmation</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Complete Your Payment</h1>
+    <p>Amount: ${{ appointment.doctor.consultation_fee }}</p>
+
+
+    <div id="card-element"></div>
+    <button id="submit">Submit Payment</button>
+
+    <script type="text/javascript">
+        const stripe = Stripe('{{ stripe_publishable_key }}');
+        const elements = stripe.elements();
+        const card = elements.create('card');
+        card.mount('#card-element');
+
+        const submitButton = document.getElementById('submit');
+        submitButton.addEventListener('click', async () => {
+            const { paymentIntent, error } = await stripe.confirmCardPayment('{{ client_secret }}', {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: '{{ user.username }}',
+                    },
+                }
+            });
+
+            if (error) {
+
+                console.error(error);
+            } else if (paymentIntent.status === 'succeeded') {
+
+                window.location.href = "{% url 'payment_success' appointment.id %}";
+            }
+        });
+    </script>
+</body>
+</html>

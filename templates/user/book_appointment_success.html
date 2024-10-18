@@ -1,0 +1,19 @@
+{% extends 'user/userindex.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <title>Appointment Booked</title>
+</head>
+<body>
+    <h1>Appointment Confirmed!</h1>
+    <p>Thank you for booking an appointment with Dr. {{ appointment.doctor.Doc_name }}.</p>
+    <p>Appointment Date: {{ appointment.date }}</p>
+    <p>Time: {{ appointment.time }}</p>
+
+
+    <form action="{% url 'create_payment' appointment.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Pay Now</button>
+    </form>
+</body>
+{% endblock %}

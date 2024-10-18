@@ -1,0 +1,31 @@
+{% extends 'user/userindex.html' %}
+{% load static %}
+{% block content %}
+<h3 class="text-center"><u>Book Appointment</u></h3><br>
+<div style="display: flex; align-items: flex-start;">
+    <div style="flex: 1; padding-right: 20px;">
+        <img src="{% static 'img/contact-img.png' %}" alt="Appointment Image" style="max-width: 100%; height: auto;">
+    </div>
+    <div style="flex: 2;">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div style="margin-top: 20px;">
+    {% for appointment in appointments %}
+        <div>
+            <p>Appointment with {{ appointment.doctor.Doc_name }}</p>
+            <p>Date: {{ appointment.date }} | Time: {{ appointment.time }}</p>
+            {% if appointment.payment.status == 'Pending' %}
+                <a href="{% url 'create_checkout_session' appointment.id %}" class="btn btn-primary">Pay Now</a>
+            {% else %}
+                <p>Payment Status: {{ appointment.payment.status }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

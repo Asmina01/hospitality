@@ -1,0 +1,33 @@
+{% extends 'user/userindex.html' %}
+
+{% block content %}
+
+
+<div class="container mt-4">
+    <h2 class="">Medical History</h2><br>
+
+    {% if medical_history %}
+        <div class="list-group">
+            {% for item in medical_history %}
+                <div class="list-group-item mb-3">
+                    <h5>Appointment with {{ item.appointment.doctor.Doc_name }} on {{ item.appointment.date }}</h5>
+                    <p><strong>Symptoms:</strong> {{ item.appointment.symptoms }}</p>
+
+                    {% if item.prescription %}
+                        <p><strong>Prescription:</strong> {{ item.prescription.Prescription }}</p>
+                        <p class="bg-success p-2 text-white" style="width:150px"><strong>Status:</strong> {{ item.prescription.status }}</p>
+                    {% else %}
+                        <p>No prescription available for this appointment.</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            No medical history available.
+        </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

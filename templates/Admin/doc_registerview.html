@@ -1,0 +1,34 @@
+{% extends 'Admin/adminindex.html' %}
+{% load static %}
+
+{% block content %}
+
+{% csrf_token %}
+<table class="table">
+     <div><h3>  <a href="{% url 'doctor_register' %}" class="btn btn-primary">Add doctor</a></h3></div>
+  <thead>
+    <tr>
+      <th scope="col">S.no</th>
+
+      <th scope="col">username</th>
+      <th scope="col">password</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for doctorProfile in Profile %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+
+            <td>{{ doctorProfile.doc_username }}</td>
+            <td>{{ doctorProfile.doc_password }}</td>
+            <td>
+
+
+            </td>
+        </tr>
+     {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

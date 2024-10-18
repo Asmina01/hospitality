@@ -1,0 +1,24 @@
+{% extends 'user/userindex.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="">Your Payments</h2><br>
+
+    {% if payments %}
+        <div class="list-group">
+            {% for payment in payments %}
+                <div class="list-group-item mb-3">
+                    <h5>Appointment with {{ payment.appointment.doctor.Doc_name }} on {{ payment.appointment.date }}</h5>
+                    <p><strong>Amount:</strong> ₹{{ payment.amount }}</p>
+                    <p class="bg-success p-2 text-white" style="width:150px"><strong>Status:</strong> {{ payment.status }}</p>
+                    <p><strong>Date of Payment:</strong> {{ payment.created_at }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            You have no payments recorded.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

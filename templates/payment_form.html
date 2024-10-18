@@ -1,0 +1,12 @@
+<form action="{% url 'process_payment' appointment.id %}" method="POST">
+    {% csrf_token %}
+    <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="{{ stripe_public_key }}"
+        data-amount="{{ appointment.consultation_fee|floatformat:0 }}00"
+        data-name="Appointment Payment"
+        data-description="Payment for appointment {{ appointment.id }}"
+        data-currency="inr"
+        data-locale="auto">
+    </script>
+</form>

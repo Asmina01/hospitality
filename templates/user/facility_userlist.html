@@ -1,0 +1,24 @@
+
+{% extends 'user/userindex.html' %}
+
+{% block content %}
+<h3>Our Facilities</h3><br>
+<div class="container">
+    <div class="row">
+        {% for facility in facility %}
+        <div class="col-md-4 mb-4">
+            <div class="card" style="border-radius: 10px; ">
+                {% if facility.image %}
+                <img src="{{ facility.image.url }}" class="card-img-top" alt="{{ facility.name }}" style="height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
+                {% endif %}
+                <div class="card-body" style="height:160px;">
+                    <h5 class="card-title">{{ facility.name }}</h5>
+                    <p class="card-text">{{ facility.description }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{ facility.status }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

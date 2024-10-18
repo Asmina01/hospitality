@@ -1,0 +1,109 @@
+{% extends 'admin/adminindex.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+
+        .dashboard-banner {
+            background-image: url('{% static 'img/bread-bg.jpg' %}');
+            background-size: cover;
+            background-position: center;
+            padding: 50px;
+            text-align: center;
+            color:black;
+        }
+        .dashboard-banner h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        .dashboard-banner p {
+            font-size: 1.5rem;
+        }
+
+
+        .card {
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+        }
+        .card-body {
+            text-align: center;
+            color: black;
+            font-size: 1.2rem;
+        }
+        .dashboard-section {
+            margin-top: 30px;
+        }
+    </style>
+
+
+    <div class="dashboard-banner">
+        <h1>Welcome to the Admin Dashboard</h1>
+        <p>Manage Doctors, Patients, and Appointments Efficiently</p>
+    </div>
+
+
+    <div class="container dashboard-section">
+        <h2>Dashboard Overview</h2>
+
+        <!-- Dashboard Cards Row -->
+        <div class="row text-center">
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                         Doctors
+                    </div>
+                     <div class="card-body">
+                            <a class="icon-link icon-link-hover" href="{% url 'doctorlist' %}">
+                                 see more
+                                 <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
+                            </a>
+                        </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Appointments
+                    </div>
+                     <div class="card-body">
+
+                     <a class="icon-link icon-link-hover" href="{% url 'appointment_list' %}">
+                                 see more
+                                 <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
+                            </a>
+                     </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                         payments
+                    </div>
+                     <div class="card-body">
+                     <a class="icon-link icon-link-hover" href="{% url 'admin_payment_list' %}">
+                                 see more
+                                 <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
+                     </a></div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity Section -->
+
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

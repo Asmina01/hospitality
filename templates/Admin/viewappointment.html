@@ -1,0 +1,33 @@
+{% extends 'Admin/adminindex.html' %}
+{% load static %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">S.no</th>
+      <th scope="col">Patient Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Doctor</th>
+      <th scope="col">Appointment Date</th>
+      <th scope="col">Appointment Time</th>
+
+    </tr>
+  </thead>
+  <tbody>
+      {% for appointment in appointments %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ appointment.uname }}</td>
+        <td>{{ appointment.age }}</td>
+        <td>{{ appointment.phone }}</td>
+        <td>{{ appointment.doctor }}</td>
+        <td>{{ appointment.app_date }}</td>
+        <td>{{ appointment.app_time }}</td>
+
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

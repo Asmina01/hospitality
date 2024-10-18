@@ -1,0 +1,40 @@
+{% extends 'user/userindex.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Appointment Details</h2>
+
+    <div class="card border-light shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title text-primary">{{ appointment.doctor.Doc_name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ appointment.doctor.Doc_department }}</h6>
+
+            <hr>
+
+            <div class="appointment-info">
+                <div class="mb-3">
+                    <strong>Date:</strong> <span class="text-dark">{{ appointment.date }}</span><br>
+                    <strong>Time:</strong> <span class="text-dark">{{ appointment.time }}</span><br>
+                    <strong>Symptoms:</strong> <span class="text-dark">{{ appointment.symptoms }}</span><br>
+                </div>
+
+
+                {% if prescription %}
+                    <div class="prescription-info">
+                        <h5 class="mt-4">Prescription</h5>
+                        <p>{{ prescription.Prescription }}</p>
+                        <strong>Status:</strong> <span >{{ prescription.status }}</span>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info mt-3" role="alert">
+                        <strong>Prescription:</strong> Not yet provided.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

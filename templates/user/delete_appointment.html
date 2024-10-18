@@ -1,0 +1,20 @@
+
+{% extends 'user/userindex.html' %}
+{% load static %}
+
+{% block content %}
+
+<h3>Delete appointment {{appointment.patient_name}} with {{appointment.doctor}}</h3>
+
+<form action="" method="POST">
+
+    {% csrf_token %}
+
+    <input type="submit" value="confirm submit">
+
+
+</form>
+
+
+
+{% endblock%}

@@ -1,0 +1,45 @@
+
+{% extends 'Admin/adminindex.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>Register New Doctor</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="">Doctor Username</label>
+            {{ form.doc_username }}
+        </div>
+
+
+        <div class="form-group">
+            <label for="">Password</label>
+            {{ form.password }}
+        </div>
+
+
+        <div class="form-group">
+            <label for="">Doctor Name</label>
+            {{ form.Doc_name }}
+        </div>
+
+
+        <div class="form-group">
+            <label for="">Doctor Department</label>
+            {{ form.Doc_department }}
+        </div>
+
+
+        <div class="form-group">
+            <label for="">Upload Image</label>
+            {{ form.images }}
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Register Doctor</button>
+    </form>
+</div>
+
+{% endblock%}

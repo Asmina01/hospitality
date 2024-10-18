@@ -1,0 +1,95 @@
+
+{% extends 'Admin/adminindex.html' %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3 class="mb-0">Facility List</h3>
+  <a href="{% url 'add_facility' %}" class="btn btn-primary">Add Facility</a>
+</div>
+
+<table class="table table-bordered" style="width: 100%; max-width: 800px; margin: auto;">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Facility Details</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for facility in facility %}
+    <tr>
+      <td>
+        <strong>Name:</strong> {{ facility.name }}<br>
+        <strong>Description:</strong> {{ facility.description }}<br>
+        <strong>Status:</strong> {{ facility.status }}<br>
+        {% if facility.image %}
+        <img src="{{ facility.image.url }}" alt="{{ facility.name }}" style="width: 100px; height: auto; margin-top: 10px;">
+        {% endif %}
+      </td>
+      <td class="text-center">
+        <a href="{% url 'update_facility' facility.id %}" class="btn btn-warning mb-2">Update</a><br>
+        <a href="{% url 'delete_facility' facility.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this facility?');">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<style>
+  /* Optional: Add some spacing around the table */
+  .table {
+    border-collapse: separate;
+    border-spacing: 0 15px; /* Space between rows */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* To ensure rounded corners are visible */
+  }
+
+  /* Add some padding to the table cells */
+  td, th {
+    padding: 20px; /* Increased padding for better spacing */
+    text-align: left;
+    vertical-align: top; /* Align content to the top of the row */
+  }
+
+  /* Styling the action buttons */
+  .btn-warning, .btn-danger {
+    width: 100px; /* Fixed width */
+    text-align: center; /* Center text */
+    transition: background-color 0.3s; /* Smooth transition */
+  }
+
+  /* Button hover effects */
+  .btn-warning:hover {
+    background-color: #e0a800; /* Darker shade of warning color */
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333; /* Darker shade of danger color */
+  }
+
+  /* Image styling */
+  img {
+    display: block;
+    margin-top: 10px;
+    border-radius: 5px; /* Rounded corners for images */
+  }
+
+  /* Table row hover effect */
+  tr:hover {
+    background-color: #f8f9fa; /* Light grey background on hover */
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .table {
+      width: 100%; /* Full width on small screens */
+    }
+
+    .btn {
+      width: auto; /* Reset width on small screens */
+    }
+  }
+</style>
+
+{% endblock %}

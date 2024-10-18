@@ -1,0 +1,81 @@
+
+{% extends 'doctor/doctorindex.html' %}
+{% load static %}
+
+{% block content %}
+
+    <style>
+        .dashboard-banner {
+
+            padding: 30px;
+            text-align: center;
+            color: black;
+            background-color: lightblue;
+
+        }
+        .dashboard-banner h1 {
+            font-size: 3.5rem;
+        }
+        .dashboard-section {
+            margin-top: 10px;
+        }
+        .card-header {
+            background-color: #28a745;
+            color: white;
+        }
+
+    </style>
+
+<body>
+
+    <!-- Banner -->
+    <div class="dashboard-banner">
+        <h2>Welcome  {{ doctor.Doc_name }}</h2>
+        <h4>  {{ doctor.Doc_department }}</h4>
+    </div>
+
+
+
+
+        <div class="dashboard-section mt-5">
+            <h3> Overview</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-header bg-primary text-white">Appointments</div>
+                        <div class="card-body">
+                           <a class="icon-link" href="{% url 'Appointments' %}">
+                              see more
+                              <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-header bg-success text-white">Health tips</div>
+                        <div class="card-body">
+                            <a class="icon-link" href="{% url 'health_tipsview' %}">
+                                 see more
+                                <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-header bg-warning text-white">Doctors</div>
+                        <div class="card-body">
+                            <a class="icon-link" href="{% url 'doctorlist' %}">
+                                 see more
+                                <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}
